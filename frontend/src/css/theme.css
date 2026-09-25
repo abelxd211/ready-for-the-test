@@ -1,0 +1,14 @@
+.tema-oscuro .tarjeta,
+.tema-oscuro .cajon,
+.tema-oscuro .calculadora-cajon,
+.tema-oscuro .flashcard {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+}
+
+.tema-oscuro .opcion {
+  background: var(--color-panel);
+}
+
+.tema-oscuro .vial-muestra {
+  border-color: rgba(255, 255, 255, 0.35);
+}

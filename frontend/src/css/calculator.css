@@ -1,0 +1,193 @@
+.calculadora-cajon {
+  background: var(--color-panel);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-lg);
+  padding: 20px;
+  box-shadow: var(--sombra);
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.panel-superior {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  gap: 8px;
+}
+
+.panel-superior-acciones {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+}
+
+#selectorModo,
+.panel-superior-acciones button,
+#botonTema {
+  border: 1px solid var(--color-borde);
+  background: var(--color-boton);
+  color: var(--color-texto);
+  border-radius: var(--radio);
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: var(--transicion);
+}
+
+#selectorModo:hover,
+.panel-superior-acciones button:hover,
+#botonTema:hover {
+  border-color: var(--primario);
+  background: var(--color-boton-hover);
+}
+
+#indicadorAngulo {
+  color: var(--ambar);
+  font-weight: 700;
+  background: var(--ambar-tinte);
+  padding: 4px 8px;
+  border-radius: var(--radio-sm);
+}
+
+#pantalla {
+  width: 100%;
+  text-align: right;
+  font-size: 2rem;
+  padding: 14px 12px;
+  margin-bottom: 12px;
+  border-radius: var(--radio);
+  border: 1px solid var(--color-borde);
+  background: var(--color-panel-alt);
+  color: var(--color-texto);
+  font-weight: 600;
+}
+
+.botones {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.botones button {
+  padding: 14px 0;
+  font-size: 1rem;
+  border: none;
+  border-radius: var(--radio);
+  background: var(--color-boton);
+  color: var(--color-texto);
+  cursor: pointer;
+  transition: var(--transicion);
+}
+
+.botones button:hover {
+  background: var(--color-boton-hover);
+  transform: translateY(-1px);
+}
+
+.botones button:active {
+  transform: translateY(1px);
+}
+
+.botones-cientificas button {
+  background: var(--color-panel-alt);
+  color: var(--morado);
+  font-size: 0.85rem;
+  padding: 10px 0;
+}
+
+.botones-cientificas button:hover {
+  background: var(--primario-tinte);
+  color: var(--primario-profundo);
+}
+
+.operador {
+  color: var(--ambar);
+  font-weight: 600;
+}
+
+.operador:hover {
+  background: var(--ambar);
+  color: #40260f;
+}
+
+.igual {
+  background: var(--verde);
+  color: #fff;
+  font-weight: 600;
+}
+
+.igual:hover {
+  background: var(--verde);
+  filter: brightness(1.1);
+  color: #fff;
+}
+
+.limpiar,
+.borrar {
+  color: var(--rojo);
+  font-weight: 600;
+}
+
+.limpiar:hover,
+.borrar:hover {
+  background: var(--rojo);
+  color: #fff;
+}
+
+.panel-historial {
+  border-top: 1px solid var(--color-borde);
+  padding-top: 10px;
+  margin-top: 4px;
+}
+
+.titulo-historial {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  margin-bottom: 6px;
+  color: var(--color-texto-suave);
+}
+
+.titulo-historial button {
+  border: none;
+  background: transparent;
+  color: var(--rojo);
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.lista-historial {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+.lista-historial li {
+  padding: 6px 4px;
+  font-size: 0.85rem;
+  border-bottom: 1px solid var(--color-borde);
+  cursor: pointer;
+  color: var(--color-texto-suave);
+  transition: var(--transicion);
+}
+
+.lista-historial li:hover {
+  color: var(--color-texto);
+  background: var(--color-panel-alt);
+}
+
+@media (max-width: 480px) {
+  .botones button {
+    padding: 12px 0;
+    font-size: 0.9rem;
+  }
+
+  #pantalla {
+    font-size: 1.6rem;
+  }
+}
