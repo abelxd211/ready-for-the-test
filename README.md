@@ -91,7 +91,22 @@ Todo queda dentro de la carpeta del proyecto, así que se comparte copiando la c
 
 Archivos clave que se copian: `backend/` (API), `frontend/` (SPA), `backend/database/schema.sql` y `seed.sql` (BD), `setup.ps1` (instalador) y `backend/router.php` (sirve frontend + API).
 
-## API
+## Capturas de pantalla
+
+La aplicación en funcionamiento:
+
+| Pantalla | Captura |
+| -------- | ------- |
+| Inicio de sesión | ![Login](docs/capturas/01-login.png) |
+| Registro de usuario | ![Registro](docs/capturas/02-registro.png) |
+| Calculadora científica | ![Calculadora](docs/capturas/03-calculadora.png) |
+| Laboratorio | ![Laboratorio](docs/capturas/04-laboratorio.png) |
+| Catálogo de sustancias | ![Sustancias](docs/capturas/05-catalogo-sustancias.png) |
+| Catálogo de Matemáticas | ![Matemáticas](docs/capturas/06-catalogo-matematicas.png) |
+| Mesa de mezclas | ![Mezclas](docs/capturas/07-mezclas.png) |
+| Identificación de sustancias | ![Identificación](docs/capturas/08-identificacion.png) |
+| Salas de examen (docente) | ![Salas](docs/capturas/09-salas-docente.png) |
+| Perfil con puntos | ![Perfil](docs/capturas/10-perfil.png) |
 
 ## Integrantes
 
