@@ -1,0 +1,99 @@
+# Ready for the Test?
+
+Proyecto RA1 — Grupo 15. Plataforma que fusiona un simulador de laboratorio (Química/Física)
+con una calculadora científica, orientada a que maestros creen salas de examen y estudiantes
+practiquen los temas.
+
+## Estado actual
+
+- ✅ Calculadora científica (frontend), refactorizada en módulos ES6.
+- ✅ Base de datos MySQL compartida (calculadora + laboratorio): `backend/database/schema.sql` + `seed.sql`.
+- ✅ Backend PHP por capas: registro e inicio de sesión con bcrypt y tokens Bearer (vigencia 12 h).
+- ✅ Historial de la calculadora persistido por usuario (endpoints protegidos).
+- ✅ Módulo de laboratorio completo: muestras, catálogos, identificación, mesa de mezclas con descubrimientos y puntos por experimento.
+- ✅ Salas de examen tipo Kahoot: docentes crean salas con pregunta/respuestas, estudiantes se unen con código y reciben puntos.
+- ✅ Salas automáticas con IA: el docente elige un tema (aritmética, álgebra, geometría o de laboratorio: sustancias, mezclas, densidad), cantidad de preguntas (1–10) y puntos por pregunta (1–100); el sistema genera la sala al instante.
+- ✅ Catálogo informativo ampliado: sustancias y reactivos con descripción y detalle, además de una nueva sección de Matemáticas (fórmulas y apuntes de repaso).
+- ✅ Asistente de contexto (IA) basado en reglas: responde según la pantalla, con el avance del usuario y tópicos de cada módulo.
+
+## API
+
+Endpoints disponibles (base: `backend/public/index.php`):
+
+| Método | Ruta                              | Descripción                          | Protegido |
+| ------ | --------------------------------- | ------------------------------------ | --------- |
+| POST   | `/api/auth/register`              | Registro: `full_name`, `email`, `password` (mín. 8), `role` | No |
+| POST   | `/api/auth/login`                 | Inicio de sesión: `email`, `password` | No |
+| GET    | `/api/calculator-operations`      | Historial de operaciones del usuario autenticado | Sí |
+| POST   | `/api/calculator-operations`      | Registrar operación: `expression`, `result`, `operation_type` | Sí |
+| GET    | `/api/me`                         | Datos del usuario autenticado (incluye `points`) | Sí |
+| POST   | `/api/lab-samples`                | Registrar muestra: `name`, `mass`, `volume`, `state` | Sí |
+| GET    | `/api/lab-samples`                | Listar muestras del usuario | Sí |
+| DELETE | `/api/lab-samples/{id}`           | Eliminar una muestra propia | Sí |
+| GET    | `/api/known-substances`           | Catálogo de sustancias conocidas (con descripción y detalle) | Sí |
+| GET    | `/api/reagents`                   | Catálogo de reactivos (con descripción) | Sí |
+| GET    | `/api/mixture-reactions`          | Catalogo de reacciones | Sí |
+| POST   | `/api/mixing`                     | Mezclar `reagent_a_id` + `reagent_b_id` (descubre y otorga puntos) | Sí |
+| POST   | `/api/identify`                   | Identificar sustancia: `state`, `transparency`, `conductivity`, `density` | Sí |
+| GET    | `/api/lab-experiments`            | Historial de experimentos y puntos | Sí |
+| POST   | `/api/quiz-rooms`                 | Crear sala: `title`, `questions` (texto, 4 opciones, `correct_option`, `points_value`) | Sí (docente) |
+| GET    | `/api/quiz-rooms`                 | Listar salas propias | Sí (docente) |
+| GET    | `/api/quiz-rooms/{id}`            | Ver sala propia con respuestas | Sí (docente) |
+| DELETE | `/api/quiz-rooms/{id}`            | Eliminar sala propia | Sí (docente) |
+| GET    | `/api/quiz-rooms/auto/topics`     | Temas disponibles para salas automáticas | Sí (docente) |
+| POST   | `/api/quiz-rooms/auto`            | Crear sala automática: `title`, `topic`, `question_count` (1–10), `points_value` (1–100) | Sí (docente) |
+| POST   | `/api/quiz-rooms/join`            | Unirse con `code` (devuelve preguntas sin respuestas) | Sí (estudiante) |
+| POST   | `/api/quiz-answers`               | Enviar `attempt_id` + `answers` (`question_id`, `option_index`) y calificar | Sí (estudiante) |
+| POST   | `/api/assistant/query`            | Consultar al asistente: `message` + `context` opcional | Sí |
+| GET    | `/api/assistant/help?context=`    | Tópicos de ayuda disponibles por pantalla | Sí |
+| GET    | `/api/assistant/context`          | Avance del usuario (puntos, experimentos, muestras, reacciones, salas) | Sí |
+
+Respuestas en formato `{ success, data, message }`. El login y el registro devuelven un
+`token` (Bearer) que se debe enviar en `Authorization: Bearer <token>` a los endpoints
+protegidos.
+
+## Base de datos
+
+1. Abre phpMyAdmin (XAMPP) → pestaña "Importar".
+2. Importa primero `backend/database/schema.sql` (crea la BD y las tablas).
+3. Importa luego `backend/database/seed.sql` (carga sustancias, reactivos y reacciones ya existentes).
+
+## Requisitos previos
+
+- XAMPP (Apache + MySQL + PHP). Solo se necesitan los módulos **MySQL** y **PHP**.
+
+## Instalación local (tu PC)
+
+1. Inicia **MySQL** desde el panel de control de XAMPP.
+2. Crea la base de datos e importa los datos semilla ejecutando una sola vez:
+
+   ```powershell
+   powershell -ExecutionPolicy Bypass -File .\setup.ps1
+   ```
+
+   Este script crea `backend/.env` (con un `TOKEN_SECRET` aleatorio) e importa `backend/database/schema.sql` + `seed.sql`. Es seguro volver a ejecutarlo: si la base ya existe, omite la importación.
+3. Inicia el servidor (frontend + API en un mismo origen):
+
+   ```powershell
+   C:\xampp\php\php.exe -S 0.0.0.0:8090 backend\router.php
+   ```
+
+4. Abre `http://localhost:8090` en el navegador.
+
+## Llevar el proyecto a otra PC (ej. la de un compañero)
+
+Todo queda dentro de la carpeta del proyecto, así que se comparte copiando la carpeta completa:
+
+1. Copia toda la carpeta del proyecto (con `backend/`, `frontend/`, `setup.ps1` y los `*.sql`) a la otra PC, por USB o comprimida en ZIP.
+2. En la otra PC: verifica que XAMPP esté instalado y que **MySQL** esté iniciado.
+3. Ejecuta `setup.ps1` (regenera la base de datos y crea un `backend/.env` propio con su propio `TOKEN_SECRET`).
+4. Inicia el servidor con `C:\xampp\php\php.exe -S 0.0.0.0:8090 backend\router.php` y abre `http://localhost:8090`.
+
+Archivos clave que se copian: `backend/` (API), `frontend/` (SPA), `backend/database/schema.sql` y `seed.sql` (BD), `setup.ps1` (instalador) y `backend/router.php` (sirve frontend + API).
+
+## API
+
+## Integrantes
+
+- Ambar
+- Abel

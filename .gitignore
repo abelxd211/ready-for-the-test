@@ -1,0 +1,20 @@
+# Dependencias
+node_modules/
+
+# Variables de entorno y credenciales
+.env
+*.env
+!.env.example
+
+# Salidas de compilacion
+dist/
+build/
+
+# Archivos temporales
+*.tmp
+*.log
+Thumbs.db
+.DS_Store
+
+# Base de datos local
+*.sql.bak
