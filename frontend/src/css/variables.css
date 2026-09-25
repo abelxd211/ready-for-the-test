@@ -1,0 +1,54 @@
+:root {
+  --color-fondo: #eef1f5;
+  --color-fondo-grad: radial-gradient(circle at 100% 0%, rgba(14, 131, 136, 0.07), transparent 45%),
+    radial-gradient(circle at 0% 100%, rgba(242, 166, 90, 0.06), transparent 40%);
+  --color-panel: #ffffff;
+  --color-panel-alt: #f7f9fb;
+  --color-texto: #1b1f24;
+  --color-texto-suave: #6b7684;
+  --color-borde: #d7dbe0;
+  --color-boton: #f0f2f5;
+  --color-boton-hover: #e2e5ea;
+
+  --primario: #0e8388;
+  --primario-profundo: #0a5f63;
+  --primario-claro: #57c4c7;
+  --primario-tinte: rgba(14, 131, 136, 0.1);
+  --ambar: #f2a65a;
+  --ambar-tinte: rgba(242, 166, 90, 0.14);
+  --verde: #2fb67c;
+  --verde-tinte: rgba(47, 182, 124, 0.14);
+  --rojo: #c4472f;
+  --rojo-tinte: rgba(196, 71, 47, 0.12);
+  --morado: #7c5cfc;
+  --rosa: #e85d9e;
+  --amarillo: #f1c40f;
+
+  --radio-sm: 8px;
+  --radio: 12px;
+  --radio-lg: 18px;
+  --sombra: 0 10px 30px rgba(0, 0, 0, 0.12);
+  --sombra-suave: 0 4px 14px rgba(0, 0, 0, 0.08);
+  --transicion: all 0.2s ease;
+  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Consolas', 'Courier New', monospace;
+}
+
+.tema-oscuro {
+  --color-fondo: #12151b;
+  --color-fondo-grad: radial-gradient(circle at 100% 0%, rgba(87, 196, 199, 0.08), transparent 45%),
+    radial-gradient(circle at 0% 100%, rgba(242, 166, 90, 0.06), transparent 40%);
+  --color-panel: #1d222b;
+  --color-panel-alt: #232a35;
+  --color-texto: #f5f6fa;
+  --color-texto-suave: #98a2b3;
+  --color-borde: #343c49;
+  --color-boton: #2b3340;
+  --color-boton-hover: #38414f;
+  --primario: #57c4c7;
+  --primario-profundo: #7fd4d6;
+  --primario-claro: #57c4c7;
+  --ambar: #f2a65a;
+  --sombra: 0 10px 30px rgba(0, 0, 0, 0.5);
+  --sombra-suave: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
